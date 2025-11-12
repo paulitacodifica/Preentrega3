@@ -214,7 +214,7 @@ section ul li img {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: block
+    display: block;
     margin 16px auto 0 auto;
 }
 section ul li img:hover {
@@ -239,7 +239,7 @@ section ul.con-imagen li {
 }
 /*Responsive para tablet con 2 columnas*/
 @media (min-width: 768px) {
-    section ul-con-imagen {
+    section ul.con-imagen {
         grid-template-columns: repeat(2, 1fr);
     }
     section ul li img {
