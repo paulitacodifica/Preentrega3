@@ -9,6 +9,7 @@ body {
 
 header {
   grid-area: header;
+  position: relative;
   background: linear-gradient(135deg, #f8c889 0%, #bba770 100%);
   padding: 32px 0;
   text-align: center;
@@ -53,8 +54,6 @@ header nav .hamburguesa {
   header nav .hamburguesa {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
     cursor: pointer;
     padding: 5px;
     background: none;
@@ -74,6 +73,7 @@ header nav .hamburguesa span {
   transition: transform 0.3s ease;
   transition: opacity 0.3s ease;
   border-radius: 3px;
+  display: block;
 }
 header nav ul {
   display: flex;
@@ -117,13 +117,13 @@ header nav ul li a {
   padding: 0.5rem 1rem;
   transition: all 0.3s ease;
   border-radius: 5px;
+  display: block;
 }
 header nav ul li a:hover {
   background-color: rgba(200, 161, 101, 0.2);
 }
 @media (max-width: 767px) {
   header nav ul li a {
-    display: block;
     padding: 1rem;
     text-align: center;
     color: #333;
