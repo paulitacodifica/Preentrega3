@@ -1,52 +1,114 @@
-header{
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+header {
     grid-area: header;
-    background: linear-gradient(135deg, #f8c889 0%, #bba770 100%);
-    padding: 32px 0;
+    background: linear-gradient(135deg, $color-primary 0%, $color-secondary 100%);
+    padding: $spacing-xlarge 0;
     text-align: center;
-    h1{
-    color: darkgoldenrod;
-    font-size: 48px;
-    margin: 0 0 16px 0;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    h1 {
+        color: $color-dark;
+        font-size: $font-size-h1;
+        margin: 0 0 16px 0;
+        text-shadow: $shadow-text;
+        
+        @include responsive(mobile) {
+            font-size: 32px;
+        }
     }
-    nav{
-    background-color: transparent;
-    padding: 1rem 2rem;
-    position: relative;
+    nav {
+        background-color: transparent;
+        padding: $spacing-medium $spacing-large;
+        position: relative;
         .menu-toggle {
             display: none;
+            &:checked ~ ul {
+                @include responsive(mobile) {
+                    display: flex;
+                }
+            }
+            &:checked ~ .hamburguesa span {
+                &:nth-child(1) {
+                    transform: rotate(45deg) translate(7px, 7px);
+                }
+                &:nth-child(2) {
+                    opacity: 0;
+                }
+                &:nth-child(3) {
+                    transform: rotate(-45deg) translate(7px, -7px);
+                }
+            }
         }
         .hamburguesa {
             display: none;
+            @include responsive(mobile) {
+                @include flex-center(column, flex-start, flex-start);
+                cursor: pointer;
+                padding: 5px;
+                background: none;
+                border: none;
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                right: $spacing-medium;
+                z-index: 1001;
+            }
+            span {
+                width: $hamburger-width;
+                height: $hamburger-height;
+                background-color: $color-tertiary;
+                margin: 3px 0;
+                @include transition(transform);
+                @include transition(opacity);
+                border-radius: 3px;
+            }
         }
-        .hamburguesa span {
-            width: 28px;
-            height: 3px;
-            background-color: #c8a165;
-            margin: 3px 0;
-            transition: transform 0.3s ease, opacity 0.3s ease;
-            border-radius: 3px;
-        }
-        ul{
-            display: flex;
-            gap: 2rem;
+        ul {
+            @include flex-center(row, center, center);
+            gap: $spacing-large;
             list-style: none;
-            justify-content: center;
-            align-items: center;
             margin: 0;
             padding: 0;
-            li a {
-                font-family:Verdana, Geneva, Tahoma, sans-serif;
-                text-decoration: none;
-                color: rgb(26, 26, 122);
-                font-weight: 600;
-                padding: 0.5rem 1rem;
-                transition: all 0.3s ease;
-                border-radius: 5px;
-                a:hover {
-                    background-color: rgba(200, 161, 101, 0.2);
+            @include responsive(mobile) {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: $color-white;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                padding: 0;
+                gap: 0;
+                z-index: 1000;
+            }
+            li {
+                @include responsive(mobile) {
+                    width: 100%;
+                    border-bottom: 1px solid $color-border;
+                    
+                    &:last-child {
+                        border-bottom: none;
+                    }
                 }
-            }       
+                a {
+                    font-family: $font-main;
+                    text-decoration: none;
+                    color: $color-text-dark;
+                    font-weight: 600;
+                    padding: $spacing-small $spacing-medium;
+                    @include transition();
+                    border-radius: 5px;
+                    &:hover {
+                        background-color: rgba(200, 161, 101, 0.2);
+                    }
+                    @include responsive(mobile) {
+                        display: block;
+                        padding: $spacing-medium;
+                        text-align: center;
+                        color: $color-text;
+                    }
+                }
+            }
         }
     }
 }
